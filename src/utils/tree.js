@@ -4,6 +4,10 @@ export default class Tree {
   }
 
   addTeam(newNode, parentNodes) {
+    if(!newNode || Object.getOwnPropertyNames(newNode).length === 0) {
+      throw new Error('Team node is invalid')
+    }
+
     let parent = this.search(parentNodes);
     if (parent) {
       newNode.parent = parent;
