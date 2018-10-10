@@ -24,7 +24,7 @@ export default class Tree {
 
     let currentSearch = parentNodes.shift();
    
-    while (currentSearch && currentNode.children.get(currentSearch)) {
+    while (currentSearch && currentNode.children.has(currentSearch)) {
       currentNode = currentNode.children.get(currentSearch);
       if (!parentNodes.length) {
         return currentNode;
