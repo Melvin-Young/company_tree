@@ -8,6 +8,7 @@
     "sourceMap": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
@@ -18,7 +19,7 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
   },
   "exclude": [
     "node_modules",

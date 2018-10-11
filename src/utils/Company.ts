@@ -1,53 +1,72 @@
-import Team from './Team';
+import Team, {IStaff, ITeam} from './Team';
+
+export interface ICompany {
+  getRoot: () => ITeam,
+  addTeam: (team: ITeam, ancestors: string[]) => Map<string, ITeam>,
+  search: (ancestors: string[]) => ITeam,
+  addStaff: (staff: IStaff) => Map<string, string>
+}
 
 export default class Company {
-  private root: Team;
+  private root: ITeam;
 
-  constructor(companyRoot: Team) {
+  constructor(companyRoot: ITeam) {
     this.root = new Team('root');
     this.root.addChild(companyRoot);
   }
 
-  public getRoot() {
+  public getRoot(): ITeam {
     // Returns iterator for the values of the base node. 
     // It only ever has one node, which is the top level of the company
     return this.root.getChildren().values().next().value;
 
   }
-  public addTeam(team: Team, ancestors: string[]): Map<string, Team> {
+  public addTeam(team: ITeam, ancestors: string[]): Map<string, ITeam> {
     // Searches through list of ancestor teams back to root to make sure team is being added to connected tree
     const parent = this.search(ancestors);
     team.setParent(parent);
     return parent.addChild(team);
   }
 
-  public search(ancestors: string[]): Team {
-    let currentAncestor: Team = this.root;
-    let nextAncestor = ancestors.shift();
+  public search(pathToTeam: string[]): ITeam {
+    // Searches for nodes by checking each nodes Map() of its children for the next value in the list
+    // If found it returns the object and then checks that object children for the next node in the path
+    let currentAncestor: ITeam = this.root;
+    let nextAncestor = pathToTeam.shift();
 
     while(nextAncestor && currentAncestor.hasChild(nextAncestor)) {
       currentAncestor = currentAncestor.getChild(nextAncestor);
-      if (!ancestors.length) {
+      if (!pathToTeam.length) {
         return currentAncestor;
       }
-      nextAncestor = ancestors.shift();
+      nextAncestor = pathToTeam.shift();
     }
-
-    throw new Error('Not found')
+    throw new Error('Not found');
   }
 
-  // bfsSearch(name, currentNode = this.root) {
-  //   // Function takes ambiguous search string and returns all results it can find
-  //   let result = [];
-  //   let searchQueue = [];
-  
-  //   searchQueue.push(currentNode);
-  
-  //   while (searchQueue && searchQueue.length) {
-  //     let nodeToCheck = searchQueue.shift();
-  //     nodeToCheck.name === name && result.push(nodeToCheck);
-  //     nodeToCheck.children.forEach(child => searchQueue.push(child));
-  //   }  
-  //   return result;
-  // }
+  public addMemberToTeam(pathToTeam: string[], staff: IStaff): Map<number, IStaff> {
+    // Rehashed search function adds staff member to each node enroute to finding the node representing the team the staff member belongs to
+    // Can help avoid expense of having to visit each nested node later
+    let currentAncestor: ITeam = this.root;
+    let nextAncestor = pathToTeam.shift();
+
+    while(nextAncestor && currentAncestor.hasChild(nextAncestor)) {
+      currentAncestor = currentAncestor.getChild(nextAncestor);
+      // Had trouble merging maps so adding immediate and nested staff to nested staff Map() until time for a fix
+      currentAncestor.addNestedStaff(staff);
+
+      if (!pathToTeam.length) {
+        currentAncestor.addStaff(staff);
+        return currentAncestor.getStaff();
+      }
+
+      nextAncestor = pathToTeam.shift();
+    }
+    throw new Error('Not found');
+  }
+
+  public getStaff(pathToTeam: string[]): Map<number, IStaff> {
+    return this.search(pathToTeam).getNestedStaff();
+    
+  }
 }
