@@ -12,17 +12,27 @@
   height: 150px;
   padding: 20px;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2.5em;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Team Card Container Styling */
+ul {
+  list-style-position: inside;
+  padding: 0%;
+  
+}
+.class-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

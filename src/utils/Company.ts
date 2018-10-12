@@ -1,28 +1,38 @@
 import Team, {IStaff, ITeam} from './Team';
 
 export interface ICompany {
+  companyName: string,
   getRoot: () => ITeam,
   addTeam: (team: ITeam, ancestors: string[]) => Map<string, ITeam>,
   search: (ancestors: string[]) => ITeam,
-  addStaff: (staff: IStaff) => Map<string, string>
+  addMemberToTeam: (pathToTeam: string[], staff: IStaff) => Map<number, IStaff>,
+  getStaff: (pathToTeam: string[]) => Map<number, IStaff>,
 }
 
-export default class Company {
+export default class Company implements ICompany {
+  public companyName: string;
+
   private root: ITeam;
 
-  constructor(companyRoot: ITeam) {
-    this.root = new Team('root');
-    this.root.addChild(companyRoot);
+  constructor(name: string) {
+    this.companyName = name;
+    this.root = new Team(name);
   }
 
   public getRoot(): ITeam {
     // Returns iterator for the values of the base node. 
     // It only ever has one node, which is the top level of the company
-    return this.root.getChildren().values().next().value;
+    return this.root;
 
   }
+
   public addTeam(team: ITeam, ancestors: string[]): Map<string, ITeam> {
     // Searches through list of ancestor teams back to root to make sure team is being added to connected tree
+    // If is the first child then appends directly to root company node
+    if(!this.root.getChildren().size) {
+      return this.root.addChild(team);
+    }
+
     const parent = this.search(ancestors);
     team.setParent(parent);
     return parent.addChild(team);

@@ -45,7 +45,7 @@ describe('A Team should', () => {
   });
 
   it('be a able to add staff', () => {
-    const staffMember = {name: 'Melvin Young', id: 6, branch: 'Product'};
+    const staffMember = {name: 'Melvin Young', id: 6, team: 'Product'};
 
     expect(team.getStaff().size).toBe(0);
     team.addStaff(staffMember);
@@ -54,7 +54,7 @@ describe('A Team should', () => {
   });
 
   it('be a able to add nested staff', () => {
-    const staffMember = {name: 'Chuck Stevenson', id: 7, branch: 'Product'};
+    const staffMember = {name: 'Chuck Stevenson', id: 7, team: 'Product'};
 
     expect(team.getNestedStaff().size).toBe(0);
     team.addNestedStaff(staffMember);

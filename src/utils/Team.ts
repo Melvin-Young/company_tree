@@ -1,7 +1,7 @@
 export interface IStaff {
   id: number,
   name: string,
-  branch: string
+  team: string
 }
 
 export interface ITeam {
