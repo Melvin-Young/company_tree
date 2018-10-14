@@ -76,10 +76,12 @@ export default class Company implements ICompany {
     throw new Error('Not found');
   }
 
+  // Gets all staff, nested staff currently has all staff bundled together
   public getStaff(pathToTeam: string[]): Map<number, IStaff> {
     return this.search(pathToTeam).getNestedStaff();
   }
 
+  // Bubbles back up the ancestor tree and returns a string array of the path from team to root
   public getAncestors(team: ITeam) {
     let parent = team.getParent();
     const result = [];
