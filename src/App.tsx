@@ -23,7 +23,7 @@ class App extends Component<{}, IState>{
     }
   }
 
-  public setRender = (team: ITeam) => team.name && this.setState({renderedTeam: team});
+  public setHeader = (team: ITeam) => team.name && this.setState({renderedTeam: team});
 
   public render() {
     return (
@@ -32,7 +32,7 @@ class App extends Component<{}, IState>{
           <h1 className="App-title">{this.state.company.companyName}</h1>
         </header>
         <div className="container">
-          <CardList company={this.state.company} displayNewTeam={this.setRender} renderTarget={this.state.renderedTeam }/>
+          <CardList company={this.state.company} setHeader={this.setHeader} renderTarget={this.state.renderedTeam }/>
         </div>
       </div>
     );

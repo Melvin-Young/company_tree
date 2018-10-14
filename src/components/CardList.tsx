@@ -11,7 +11,7 @@ import TeamCard from './TeamCard';
 interface IProps {
   company: ICompany,
   renderTarget: ITeam,
-  displayNewTeam: (team: ITeam) => void
+  setHeader: (team: ITeam) => void
 }
 
 interface IState {
@@ -31,6 +31,7 @@ class CardList extends Component<IProps, IState> {
     this.props !== prevProps && this.setState({renderTarget: this.props.renderTarget});
   }
 
+  // Show Staff and Show Teams toggle whether Team Cards or Staff Cards will be rendered in body of component
   public showStaff = () => {
     this.setState({showStaff: true});
   }
@@ -40,7 +41,7 @@ class CardList extends Component<IProps, IState> {
   }
 
   public render() {
-    const { displayNewTeam, company} = this.props;
+    const { setHeader, company } = this.props;
     const teamList: JSX.Element[] = [];
     const staffList: JSX.Element[] = [];
     
@@ -49,17 +50,14 @@ class CardList extends Component<IProps, IState> {
         <TeamCard
           company={company}
           key={childTeam.name}
-          displayNewTeam={displayNewTeam}
+          setHeader={setHeader}
           team={childTeam}/>
-        )
+        );
     });
 
+    // Nested Staff is all staff assigned to a team or assigned to one of its sub teams
     this.state.renderTarget.getNestedStaff().forEach((staffMember: IStaff) => {
-      return staffList.push( 
-        <StaffCard
-          key={staffMember.id}
-          staff={staffMember}/>
-        )
+      return staffList.push(<StaffCard key={staffMember.id} staff={staffMember}/>);
     });
 
     return (
@@ -67,17 +65,17 @@ class CardList extends Component<IProps, IState> {
         <div className="card-container-banner">
           <HeaderCard
             key={this.state.renderTarget.name}
-            displayNewTeam={displayNewTeam}
-            showTeams = {this.showTeams}
-            showStaff = {this.showStaff}
+            setHeader={setHeader}
+            triggerShowTeams = {this.showTeams}
+            triggerShowStaff = {this.showStaff}
             team={this.state.renderTarget}/>
         </div>
         <hr/>
         <div className="card-container">
-          {this.state.showStaff ? staffList : teamList }
+          { this.state.showStaff ? staffList : teamList }
         </div>
       </section>
-    )
+    );
   }
 }
 export default CardList;

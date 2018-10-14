@@ -7,9 +7,9 @@ import { IStaff } from '../utils/Team';
 
 interface IProps {
   team: ITeam,
-  displayNewTeam: (team: ITeam) => void,
-  showStaff: () => void,
-  showTeams: () => void
+  setHeader: (team: ITeam) => void,
+  triggerShowStaff: () => void,
+  triggerShowTeams: () => void
 }
 interface IState {
   team: ITeam
@@ -23,16 +23,18 @@ class HeaderCard extends Component<IProps, IState> {
   }
 
   public render() {
-    const { displayNewTeam, showStaff, showTeams, team } = this.props;
+    const { setHeader, triggerShowStaff, triggerShowTeams, team } = this.props;
     const staff = team.getStaff();
     const staffContainer: any[] = [];
+
+    // Displays immediate staff members belonging to team currently rendered in header. 
     staff.size && staff.forEach((staffMember: IStaff) => {
       staffContainer.push(<li key={staffMember.id}> {staffMember.name} </li>)
     });
 
     return (
       <div className='card header-card'>
-        <div onClick={ () => displayNewTeam(team.getParent()) }>
+        <div onClick={ () => setHeader(team.getParent()) }>
           <img src={require('./../images/brainstorming.jpg')} alt="Avatar" className="card-picture" />
           <h2> {team.name} Team</h2>
           <div className="team-member-list">
@@ -40,8 +42,9 @@ class HeaderCard extends Component<IProps, IState> {
           </div>
         </div>
           <div className="button-container">
-            <ConfigurableButton buttonText="Show Staff" onClickFunc={() => showStaff()}/>
-            <ConfigurableButton buttonText="Show Teams" onClickFunc={() => showTeams()}/>
+            {/* Displays both immediate and nested staff members as staff cards in body */}
+            <ConfigurableButton buttonText="Show Staff" onClickFunc={() => triggerShowStaff()}/>
+            <ConfigurableButton buttonText="Show Teams" onClickFunc={() => triggerShowTeams()}/>
           </div>
       </div>
     )
