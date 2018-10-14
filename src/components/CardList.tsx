@@ -27,6 +27,7 @@ class CardList extends Component<IProps, IState> {
     }
   }
 
+  // Updates state whenever a card is clicked and new props for the team to render are passed down
   public componentDidUpdate(prevProps: IProps): void {
     this.props !== prevProps && this.setState({renderTarget: this.props.renderTarget});
   }
