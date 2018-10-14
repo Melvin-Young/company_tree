@@ -4,7 +4,7 @@ import React from "react";
 
 interface IProps {
   buttonText: string,
-  onClickFunc: () => void
+  onClickFunc: () => void,
 }
 
 const ConfigurableButton = (props: IProps) => (

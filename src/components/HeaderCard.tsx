@@ -1,4 +1,4 @@
-/* tslint:disable no-unused-expression no-console jsx-no-lambda */
+/* tslint:disable no-unused-expression jsx-no-lambda */
 
 import React, { Component } from 'react';
 import ConfigurableButton from '../buttons/ConfigurableButton';

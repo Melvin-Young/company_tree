@@ -10,8 +10,7 @@ const StaffCard = (props: IProps) => (
     <img
       src={require("./../images/profile.png")}
       alt="Avatar"
-      className="staff-picture"
-    />
+      className="staff-picture"/>
     <h2> {props.staff.name}</h2>
   </div>
 );

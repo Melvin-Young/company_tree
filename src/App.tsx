@@ -1,4 +1,4 @@
-/* tslint:disable: no-unused-expression no-console*/
+/* tslint:disable: no-unused-expression*/
 
 import React, {Component} from 'react';
 import './App.css';
@@ -26,14 +26,13 @@ class App extends Component<{}, IState>{
   public setRender = (team: ITeam) => team.name && this.setState({renderedTeam: team});
 
   public render() {
-    console.log(this.state.renderedTeam)
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">{this.state.company.companyName}</h1>
         </header>
         <div className="container">
-          <CardList displayNewTeam={this.setRender} root={this.state.renderedTeam }/>
+          <CardList company={this.state.company} displayNewTeam={this.setRender} renderTarget={this.state.renderedTeam }/>
         </div>
       </div>
     );
@@ -110,47 +109,46 @@ function createCompany() {
   tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);
   tree.addTeam(jrOfficeManagersSon, ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']);
  
-  tree.addMemberToTeam(['CEO'], {name: 'Mr. CEO', id: 2, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 5, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 7, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 8, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 9, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 11, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 23, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 443, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dummy', id: 4334, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Dummy', id: 2, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Dummy', id: 3, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Dummy', id: 4, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Dummy', id: 5, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Dummy', id: 6, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 5, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 4, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 342, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 436, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 43265, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 543, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Dummy', id: 52462, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO'], {name: 'Mr. CEO', id: 2, team: 'CEO'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 5, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 23, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 523, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 551, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 32155, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 255, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 215, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 455, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 45235, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 5423, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Dummy', id: 425, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Dummy', id: 325, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Dummy', id: 325, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Dummy', id: 25, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Dummy', id: 325, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Dummy', id: 235, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Dummy', id: 25, team: 'Engineering'});
-  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Dummy', id: 325, team: 'Engineering'});
-  console.log(tree.getRoot());
+  tree.addMemberToTeam(['CEO'], {name: 'Mr. CEO', id: 2, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Karen', id: 5, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Richard', id: 7, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Sandra', id: 8, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Dirk', id: 9, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Ashley', id: 11, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Lando', id: 23, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'R2D2', id: 443, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Engineering'], {name: 'Legolas', id: 4334, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Aragorn', id: 2, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Cersei', id: 3, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Tyrion', id: 4, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Bale', id: 5, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Supply Chain Management'], {name: 'Josh Dobbs', id: 6, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'John Kelly', id: 5, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'James', id: 4, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Zlattan', id: 342, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Tiger', id: 436, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Tree', id: 43265, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Tony', id: 543, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production'], {name: 'Amber', id: 52462, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO'], {name: 'Mr. CEO', id: 2, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Katelyn', id: 23, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Cameron', id: 523, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Blaine', id: 551, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'D Arte', id: 32155, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Gerald', id: 255, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Gigi', id: 215, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Niel', id: 455, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Mark', id: 45235, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Kerner', id: 5423, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sam', id: 425, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Anthony', id: 325, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Lea', id: 325, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Mary', id: 25, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Lauryn', id: 325, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop2'], {name: 'Andre', id: 235, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Keith', id: 25, team: ['CEO', 'Engineering']});
+  tree.addMemberToTeam(['CEO', 'Production', 'Workshop1'], {name: 'Ezhane', id: 325, team: ['CEO', 'Engineering']});
   return tree;
 }
 export default App;

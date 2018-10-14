@@ -1,33 +1,34 @@
 /* tslint:disable: no-unused-expression jsx-no-lambda*/
 
 import React, { Component} from 'react';
+import { ICompany } from '../utils/Company';
 import { ITeam } from '../utils/Team';
-
 import { IStaff } from '../utils/Team';
-import Card from './Card';
 import HeaderCard from './HeaderCard';
 import StaffCard from './StaffCard';
+import TeamCard from './TeamCard';
 
 interface IProps {
-  root: ITeam,
+  company: ICompany,
+  renderTarget: ITeam,
   displayNewTeam: (team: ITeam) => void
 }
 
 interface IState {
-  root: ITeam,
+  renderTarget: ITeam,
   showStaff: boolean
 }
 class CardList extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      root: props.root,
+      renderTarget: props.renderTarget,
       showStaff: false
     }
   }
 
   public componentDidUpdate(prevProps: IProps): void {
-    this.props !== prevProps && this.setState({root: this.props.root});
+    this.props !== prevProps && this.setState({renderTarget: this.props.renderTarget});
   }
 
   public showStaff = () => {
@@ -39,20 +40,21 @@ class CardList extends Component<IProps, IState> {
   }
 
   public render() {
-    const { displayNewTeam} = this.props;
+    const { displayNewTeam, company} = this.props;
     const teamList: JSX.Element[] = [];
     const staffList: JSX.Element[] = [];
     
-    this.state.root.getChildren().forEach((childTeam: ITeam) => {
+    this.state.renderTarget.getChildren().forEach((childTeam: ITeam) => {
       return teamList.push( 
-        <Card
+        <TeamCard
+          company={company}
           key={childTeam.name}
           displayNewTeam={displayNewTeam}
           team={childTeam}/>
         )
     });
 
-    this.state.root.getNestedStaff().forEach((staffMember: IStaff) => {
+    this.state.renderTarget.getNestedStaff().forEach((staffMember: IStaff) => {
       return staffList.push( 
         <StaffCard
           key={staffMember.id}
@@ -64,11 +66,11 @@ class CardList extends Component<IProps, IState> {
       <section>
         <div className="card-container-banner">
           <HeaderCard
-            key={this.state.root.name}
+            key={this.state.renderTarget.name}
             displayNewTeam={displayNewTeam}
             showTeams = {this.showTeams}
             showStaff = {this.showStaff}
-            team={this.state.root}/>
+            team={this.state.renderTarget}/>
         </div>
         <hr/>
         <div className="card-container">

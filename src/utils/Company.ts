@@ -3,6 +3,7 @@ import Team, {IStaff, ITeam} from './Team';
 export interface ICompany {
   companyName: string,
   getRoot: () => ITeam,
+  getAncestors: (team: ITeam) => string[],
   addTeam: (team: ITeam, ancestors: string[]) => Map<string, ITeam>,
   search: (ancestors: string[]) => ITeam,
   addMemberToTeam: (pathToTeam: string[], staff: IStaff) => Map<number, IStaff>,
@@ -21,8 +22,8 @@ export default class Company implements ICompany {
 
   public getRoot(): ITeam {
     // Returns iterator for the values of the base node. 
-    // It only ever has one node, which is the top level of the company
-    return this.root;
+    // It only ever has one node, which is the top level team of the company
+    return this.root.getChildren().values().next().value;
 
   }
 
@@ -77,6 +78,15 @@ export default class Company implements ICompany {
 
   public getStaff(pathToTeam: string[]): Map<number, IStaff> {
     return this.search(pathToTeam).getNestedStaff();
-    
+  }
+
+  public getAncestors(team: ITeam) {
+    let parent = team.getParent();
+    const result = [];
+    while(parent.name) {
+      result.unshift(parent.name);
+      parent = parent.getParent();
+    }
+    return result;
   }
 }
