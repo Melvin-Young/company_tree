@@ -24,24 +24,23 @@ If you're using any code style like xo, standard etc. That will help others whil
 npm install && npm start
 
 ## API Reference
-Create a new company with a name <b>
-  `const tree =  new Company('Not A Shell Company');`
+Create a new company with a name  
+  `const tree =  new Company('Not A Shell Company');`  
 
 Add your first team. This will be the topmost level team and what will be returned as root so it's best to go with CEO
-  `const ceo = new Team('CEO');` <b>
-  `tree.addTeam(ceo, ['CEO']);` <b>
+  `const ceo = new Team('CEO');`  
+  `tree.addTeam(ceo, ['CEO']);`  
 
 Add subsequent teams by extending the mapping array
-  `const office = new Team('Office');` <b>
-  `tree.addTeam(office, ['CEO']);` <b>
-  `const officeManager = new Team('Office Manager');` <b>
-  `const jrOfficeManager = new Team('Office Manager Lite');` <b>
-  `tree.addTeam(officeManager, ['CEO', 'Office']);` <b>
-  `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);` <b>
+  `const office = new Team('Office');`  
+  `tree.addTeam(office, ['CEO']);`  
+  `const officeManager = new Team('Office Manager');`  
+  `const jrOfficeManager = new Team('Office Manager Lite');`  
+  `tree.addTeam(officeManager, ['CEO', 'Office']);`  
+  `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);`  
 
 Add team members the same way
-  `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`
-
+  `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`  
 
 ## Tests
 - Unit tests currently to support the underlying tree and its functionality
