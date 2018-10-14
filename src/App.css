@@ -1,5 +1,6 @@
 body {
   background-image: url("https://www.pexels.com/photo/group-of-people-sitting-near-table-1181396/");
+  background: whitesmoke;
 }
 
 .App {
@@ -34,6 +35,8 @@ body {
 
 /* Outermost container */
 .container {
+  height: 1024px;
+  min-height: 100%;
   width: 90%;
   display: inline-block;
   text-align: center;
@@ -57,19 +60,10 @@ body {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  cursor: pointer;
   height: 400px;
   width: 300px;
   padding: 20px 20px;
-}
-
-.staff-picture {
-  height: 350px;
-}
-
-/* Header Card Data  */
-.team-member-list {
-  overflow-y: scroll;
-  height: 100px;
 }
 
 .card:hover {
@@ -85,4 +79,38 @@ body {
   list-style-position: inside;
   list-style: none;
   padding: 5%;
+}
+
+/* Header Card Data  */
+.header-card {
+  height: auto;
+}
+
+.team-member-list {
+  overflow-y: scroll;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* Header Card Button Container */
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.button {
+  border: none;
+  background-color: #575757;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Profile Card Styling */
+.staff-picture {
+  height: 350px;
 }

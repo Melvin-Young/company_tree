@@ -22,7 +22,7 @@ class CardList extends Component<IProps, IState> {
     super(props);
     this.state = {
       root: props.root,
-      showStaff: true
+      showStaff: false
     }
   }
 
@@ -30,16 +30,16 @@ class CardList extends Component<IProps, IState> {
     this.props !== prevProps && this.setState({root: this.props.root});
   }
 
-  public showStaff() {
+  public showStaff = () => {
     this.setState({showStaff: true});
   }
 
-  public showTeams() {
-    this.setState({showStaff: false})
+  public showTeams = () => {
+    this.setState({showStaff: false});
   }
 
   public render() {
-    const { displayNewTeam, root } = this.props;
+    const { displayNewTeam} = this.props;
     const teamList: JSX.Element[] = [];
     const staffList: JSX.Element[] = [];
     
@@ -48,7 +48,6 @@ class CardList extends Component<IProps, IState> {
         <Card
           key={childTeam.name}
           displayNewTeam={displayNewTeam}
-          teamDisplayedOnClick={childTeam}
           team={childTeam}/>
         )
     });
@@ -56,7 +55,7 @@ class CardList extends Component<IProps, IState> {
     this.state.root.getNestedStaff().forEach((staffMember: IStaff) => {
       return staffList.push( 
         <StaffCard
-          key={staffMember.name}
+          key={staffMember.id}
           staff={staffMember}/>
         )
     });
@@ -65,10 +64,11 @@ class CardList extends Component<IProps, IState> {
       <section>
         <div className="card-container-banner">
           <HeaderCard
-            key={root.name}
+            key={this.state.root.name}
             displayNewTeam={displayNewTeam}
-            teamDisplayedOnClick={root.getParent()}
-            team={root}/>
+            showTeams = {this.showTeams}
+            showStaff = {this.showStaff}
+            team={this.state.root}/>
         </div>
         <hr/>
         <div className="card-container">

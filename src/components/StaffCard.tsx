@@ -1,5 +1,3 @@
-/* tslint:disable no-unused-expression jsx-no-lambda */
-
 import React from "react";
 import { IStaff } from "../utils/Team";
 
