@@ -32,7 +32,9 @@ class App extends Component<{}, IState>{
         <header className="App-header">
           <h1 className="App-title">{this.state.company.companyName}</h1>
         </header>
-        <CardList displayNewTeam={this.setRender} root={this.state.renderedTeam }/>
+        <div className="container">
+          <CardList displayNewTeam={this.setRender} root={this.state.renderedTeam }/>
+        </div>
       </div>
     );
   }

@@ -26,7 +26,7 @@ class CardList extends Component<IProps, IState> {
   }
 
   public render() {
-    const { displayNewTeam } = this.props;
+    const { displayNewTeam, root } = this.props;
     const cardList: any[] = [];
   
     this.state.root.getChildren().forEach((childTeam: ITeam) => {
@@ -34,16 +34,20 @@ class CardList extends Component<IProps, IState> {
         <Card
           key={childTeam.name}
           displayNewTeam={displayNewTeam}
+          teamDisplayedOnClick={childTeam}
           team={childTeam}/>
         )
     });
     return (
       <section>
-        <div onClick={ 
-          () => displayNewTeam(this.state.root.getParent()) }>
-          <h1>{this.state.root.name}</h1>
-          <hr/>
+        <div className="card-container-banner">
+          <Card
+            key={root.name}
+            displayNewTeam={displayNewTeam}
+            teamDisplayedOnClick={root.getParent()}
+            team={root}/>
         </div>
+        <hr/>
         <div className="card-container">
           { cardList }
         </div>

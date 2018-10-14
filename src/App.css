@@ -1,3 +1,7 @@
+body {
+  background-image: url("https://www.pexels.com/photo/group-of-people-sitting-near-table-1181396/");
+}
+
 .App {
   text-align: center;
 }
@@ -9,6 +13,9 @@
 
 .App-header {
   background-color: #222;
+  background-repeat: no-repeat;
+  background-position: 5%;
+  background-image: url("./images/team.jpeg");
   height: 150px;
   padding: 20px;
   color: white;
@@ -25,7 +32,18 @@
   font-size: large;
 }
 
+/* Outermost container */
+.container {
+  width: 90%;
+  display: inline-block;
+  text-align: center;
+}
+
 /* Card Container Styling */
+.card-container-banner {
+  display: inline-block;
+  padding-bottom: 50px;
+}
 
 .card-container{
   display: flex;
