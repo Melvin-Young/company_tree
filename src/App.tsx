@@ -1,19 +1,38 @@
+/* tslint:disable: no-unused-expression no-console*/
+
 import React, {Component} from 'react';
 import './App.css';
 
 import CardList from './components/CardList';
-import Company from './utils/Company';
+import Company, { ICompany } from './utils/Company';
 import Team from './utils/Team';
+import { ITeam } from './utils/Team';
 
-class App extends Component {
-  public render() {
+interface IState {
+  company: ICompany,
+  renderedTeam: ITeam
+}
+
+class App extends Component<{}, IState>{
+  constructor(props: any) {
+    super(props);
     const company = createCompany();
+    this.state = {
+      company,
+      renderedTeam: company.search(['CEO'])
+    }
+  }
+
+  public setRender = (team: ITeam) => team.name && this.setState({renderedTeam: team});
+
+  public render() {
+    console.log(this.state.renderedTeam)
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">{company.companyName}</h1>
+          <h1 className="App-title">{this.state.company.companyName}</h1>
         </header>
-        <CardList root={company.search(['CEO'])}/>
+        <CardList displayNewTeam={this.setRender} root={this.state.renderedTeam }/>
       </div>
     );
   }
@@ -89,7 +108,6 @@ function createCompany() {
   tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);
   tree.addTeam(jrOfficeManagersSon, ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']);
 
-  // tslint:disable-next-line:no-console 
   console.log(tree.getRoot());
   return tree;
 }

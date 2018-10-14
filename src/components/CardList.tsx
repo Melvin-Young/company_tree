@@ -1,30 +1,50 @@
+/* tslint:disable: no-unused-expression jsx-no-lambda*/
+
 import React, { Component} from 'react';
 import { ITeam } from '../utils/Team';
 
-import TeamCard from './TeamCard';
+import Card from './Card';
 
 interface IProps {
-  root: ITeam
+  root: ITeam,
+  displayNewTeam: (team: ITeam) => void
 }
 
-class CardList extends Component<IProps, {}> {
+interface IState {
+  root: ITeam
+}
+class CardList extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
+    this.state = {
+      root: props.root
+    }
   }
+
+  public componentDidUpdate(prevProps: IProps): void {
+    this.props !== prevProps && this.setState({root: this.props.root});
+  }
+
   public render() {
-    const root: ITeam = this.props.root;
+    const { displayNewTeam } = this.props;
     const cardList: any[] = [];
   
-    root.getChildren().forEach((childTeam: ITeam) => {
-       return cardList.push( <TeamCard childTeam={childTeam}/>)
+    this.state.root.getChildren().forEach((childTeam: ITeam) => {
+      return cardList.push( 
+        <Card
+          key={childTeam.name}
+          displayNewTeam={displayNewTeam}
+          team={childTeam}/>
+        )
     });
     return (
       <section>
-        <div className="card-header">
-          <h1 className="root-team-header">{root.name}</h1>
+        <div onClick={ 
+          () => displayNewTeam(this.state.root.getParent()) }>
+          <h1>{this.state.root.name}</h1>
           <hr/>
         </div>
-        <div className="class-list">
+        <div className="card-container">
           { cardList }
         </div>
       </section>
