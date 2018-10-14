@@ -48,11 +48,11 @@ body {
 .card-container{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
- /* Card Styling */
-
+ /* Base Card Styling */
  .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -62,8 +62,18 @@ body {
   padding: 20px 20px;
 }
 
-/* On mouse-over, add a deeper shadow */
+.staff-picture {
+  height: 350px;
+}
+
+/* Header Card Data  */
+.team-member-list {
+  overflow-y: scroll;
+  height: 100px;
+}
+
 .card:hover {
+  /* On mouse-over, add a deeper shadow */
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 

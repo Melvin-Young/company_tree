@@ -9,12 +9,14 @@ interface IProps {
   teamDisplayedOnClick: ITeam
 }
 interface IState {
+  showStaff: boolean,
   team: ITeam
 }
 class Card extends Component<IProps, IState> {
   public constructor(props: IProps) {
     super(props);
     this.state = {
+      showStaff: false,
       team: props.team
     }
   }
@@ -29,7 +31,7 @@ class Card extends Component<IProps, IState> {
 
     return (
       <div className='card' onClick={ () => displayNewTeam(teamDisplayedOnClick) }>
-        <img src={require('./../images/team2.jpg')} alt="Avatar" className="card-picture" />
+        <img src={require('./../images/smalltable.jpg')} alt="Avatar" className="card-picture" />
         <h2> {team.name} Team</h2>
         <ul> {childTeamContainer} </ul>
       </div>
