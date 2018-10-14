@@ -20,27 +20,24 @@ If you're using any code style like xo, standard etc. That will help others whil
 * Clicking on the Card in the header takes you back up a level so that its parent is not being examined and it is in the lower section as a sub team
 * If allowed you can pick a team to belong to. This button returns an array that would then be assigned to a users object 
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
 ## Installation
 npm install && npm start
 
 ## API Reference
-Create a new company with a name
+Create a new company with a name <b>
   `const tree =  new Company('Not A Shell Company');`
 
 Add your first team. This will be the topmost level team and what will be returned as root so it's best to go with CEO
-  `const ceo = new Team('CEO');`
-  `tree.addTeam(ceo, ['CEO']);`
+  `const ceo = new Team('CEO');` <b>
+  `tree.addTeam(ceo, ['CEO']);` <b>
 
 Add subsequent teams by extending the mapping array
-  `const office = new Team('Office');`
-  `tree.addTeam(office, ['CEO']);`
-  `const officeManager = new Team('Office Manager');`
-  `const jrOfficeManager = new Team('Office Manager Lite');`
-  `tree.addTeam(officeManager, ['CEO', 'Office']);`
-  `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);`
+  `const office = new Team('Office');` <b>
+  `tree.addTeam(office, ['CEO']);` <b>
+  `const officeManager = new Team('Office Manager');` <b>
+  `const jrOfficeManager = new Team('Office Manager Lite');` <b>
+  `tree.addTeam(officeManager, ['CEO', 'Office']);` <b>
+  `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);` <b>
 
 Add team members the same way
   `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`
