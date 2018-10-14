@@ -41,7 +41,7 @@ class Card extends Component<IProps, IState> {
           <ul> {childTeamContainer} </ul>
         </div>
         <div className="team-button-container">
-          { team.getParent() !== company.getRoot() && <ConfigurableButton onClickFunc={ () => console.log(company.getAncestors(team))} buttonText={'Choose Team'}/> }
+          { team.getParent() !== company.getRoot() && <ConfigurableButton onClickFunc={ () => console.log(company.getAncestors(team))} buttonText={'My Team'}/> }
         </div>
       </div>
     );

@@ -2,8 +2,10 @@
   "name": "migration",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://melvin-young.github.io/hatch-test",
   "dependencies": {
     "@types/enzyme": "^3.1.14",
+    "gh-pages": "^2.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
@@ -12,6 +14,8 @@
     "redux-logger": "^3.0.6"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
