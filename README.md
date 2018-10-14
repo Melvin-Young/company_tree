@@ -40,7 +40,7 @@ Add subsequent teams by extending the mapping array
   `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);`  
 
 Add team members the same way  
-  `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`  
+  `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Melvin Young', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`  
 
 ## Tests
 - Unit tests currently to support the underlying tree and its functionality
