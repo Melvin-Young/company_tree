@@ -31,7 +31,7 @@ Add your first team. This will be the topmost level team and what will be return
   `const ceo = new Team('CEO');`  
   `tree.addTeam(ceo, ['CEO']);`  
 
-Add subsequent teams by extending the mapping array
+Add subsequent teams by extending the mapping array  
   `const office = new Team('Office');`  
   `tree.addTeam(office, ['CEO']);`  
   `const officeManager = new Team('Office Manager');`  
@@ -39,7 +39,7 @@ Add subsequent teams by extending the mapping array
   `tree.addTeam(officeManager, ['CEO', 'Office']);`  
   `tree.addTeam(jrOfficeManager, ['CEO', 'Office', 'Office Manager']);`  
 
-Add team members the same way
+Add team members the same way  
   `tree.addMemberToTeam(['CEO', 'Office', 'Office Manager', 'Office Manager Lite'], {name: 'Sheree', id: 5, team: ['CEO', 'Office', 'Office Manager', 'Office Manager Lite']});`  
 
 ## Tests
