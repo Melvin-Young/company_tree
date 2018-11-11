@@ -18,6 +18,7 @@ interface IState {
   renderTarget: ITeam,
   showStaff: boolean
 }
+
 class CardList extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
